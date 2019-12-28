@@ -1,3 +1,5 @@
+package system;
+
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.Arrays;
 
@@ -63,6 +65,7 @@ public class FileSystem {
      * @return A 2D String array of block/file allocations. Each index corresponds to one disk block and the entry is either null
      * if the blocks is free or an array of strings which is the path to the file occupying that block.
      */
+
     public String[][] disk() {
 
         Leaf[] alloc = FileSystem.fileStorage.getAlloc();
@@ -255,7 +258,7 @@ public class FileSystem {
 
         Node found = PathExists(name);
 
-        if (found == null || found.getClass().getName() == "system.Node") {
+        if (found == null || found.getClass().getName() == "system.system.Node") {
 
             return null;
 
@@ -274,7 +277,7 @@ public class FileSystem {
 
         Node found = PathExists(name);
 
-        if (found == null || found.getClass().getName() == "system.Leaf") {
+        if (found == null || found.getClass().getName() == "system.system.Leaf") {
 
             return null;
 

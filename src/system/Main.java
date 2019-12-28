@@ -1,3 +1,5 @@
+package system;
+
 public class Main {
 
     public static void main(String[] args) throws BadFileNameException, OutOfSpaceException {
@@ -182,7 +184,7 @@ public class Main {
         System.out.println("*****************************************");
 
         System.out.println("14. Creating file2 which requires 6 KB");
-        System.out.println("Expected outcome: OutOfSpaceException");
+        System.out.println("Expected outcome: system.OutOfSpaceException");
         System.out.println("What we get in fact:");
         String[] namef2 = {"root","file2"};
         try {
