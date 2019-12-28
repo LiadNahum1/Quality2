@@ -104,7 +104,6 @@ public class FileSystem {
 
         Tree workingTree = fileSystemTree;
         String fileName = name[name.length - 1];
-
         if (name[0] != "root") {
 
             throw new BadFileNameException();
@@ -124,8 +123,13 @@ public class FileSystem {
                 rmfile(name);
 
             }
+            //fix their bug
+            else
+                throw new OutOfSpaceException();
+            //fix their bug
 
         }
+
 
         //loop until level containing file
         for (int i = 0; i < name.length - 1; i++) {
@@ -258,7 +262,7 @@ public class FileSystem {
 
         Node found = PathExists(name);
 
-        if (found == null || found.getClass().getName() == "system.system.Node") {
+        if (found == null || found.getClass().getName() == "system.Node") {
 
             return null;
 
@@ -277,7 +281,7 @@ public class FileSystem {
 
         Node found = PathExists(name);
 
-        if (found == null || found.getClass().getName() == "system.system.Leaf") {
+        if (found == null || found.getClass().getName() == "system.Leaf") {
 
             return null;
 

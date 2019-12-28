@@ -142,6 +142,11 @@ public class FileSystemTest {
         and the system has not enough space - don't erase the old version*/
         name = new String [3];
         name[0] = "root"; name[1] = "docs"; name[2] = "file1";
+        //test with bug
+        //fail();
+        //test with bug
+
+        // test will work after fixing the bug
         try {
             fileSystem.file(name, 100);
             assertTrue(false);
@@ -151,6 +156,7 @@ public class FileSystemTest {
         } catch (OutOfSpaceException e) {
             assertTrue(fileSystem.FileExists(name) != null );
         }
+        // test will work after fixing the bug
     }
 
     @Test
