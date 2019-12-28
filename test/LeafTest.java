@@ -3,12 +3,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import system.FileSystem;
-import system.Tree;
+import system.Leaf;
 
 import static org.junit.Assert.*;
 
-
-public class TreeTest {
+public class LeafTest {
     private FileSystem fileSystem;
     private String [] name;
 
@@ -21,17 +20,10 @@ public class TreeTest {
     }
 
     @Test
-    public void GetChildByName(){
-        String[] directory = {"root"};
-        Tree tree = fileSystem.DirExists(directory);
-        Tree output = tree.GetChildByName("docs");
-        assertTrue(tree.children.containsKey("file1"));
-        assertFalse(tree.children.containsKey("notExistFile"));
-        output = tree.GetChildByName("directoryThatIsNotExist");
-        assertTrue(output.children != null);
-        assertTrue(output.children.isEmpty());
-
+    public void getPath(){
+        Leaf leaf = fileSystem.FileExists(name);
+        String[] output = leaf.getPath();
+        for (int index = 0; index < output.length; index++)
+            assertTrue(output[index].equals(name[index]));
     }
-
-
 }
