@@ -58,6 +58,17 @@ public class FileSystemTest {
         } catch (BadFileNameException e) {
             assertTrue(false);
         }
+
+        /*
+        //dir is already exist
+        name[0] = "root"; name[1] = "docs";
+        try {
+            fileSystem.dir(name);
+            assertTrue(true);
+            assertTrue(fileSystem.DirExists(name) != null);
+        } catch (BadFileNameException e) {
+            assertTrue(false);
+        }*/
     }
 
     @Test
@@ -239,7 +250,15 @@ public class FileSystemTest {
             assertTrue(false);
         }
 
+        //directory doesn't exist - nothing should happen
+        name[0] = "root"; name[1] = "dirDoesntExist";
+        try {
+            fileSystem.rmdir(name); //remove
+            assertTrue(fileSystem.DirExists(name) == null);
 
+        } catch (DirectoryNotEmptyException e) {
+            assertTrue(false);
+        }
     }
 
     @Test
