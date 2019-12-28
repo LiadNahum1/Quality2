@@ -1,3 +1,5 @@
+package system;
+
 import java.util.LinkedList;
 
 public class Space {

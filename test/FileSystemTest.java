@@ -1,12 +1,12 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import system.BadFileNameException;
+import system.FileSystem;
+import system.Leaf;
+import system.OutOfSpaceException;
 
 import java.nio.file.DirectoryNotEmptyException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -64,7 +64,7 @@ public class FileSystemTest {
     public void disk() {
     }
 
-    //does not pass the tests
+
     @Test
     public void file() {
         //name doesn't start with root - an exception is expected
@@ -140,6 +140,7 @@ public class FileSystemTest {
 
         /*Trying to add a file with a name of an existing file but the new file is too large
         and the system has not enough space - don't erase the old version*/
+        name = new String [3];
         name[0] = "root"; name[1] = "docs"; name[2] = "file1";
         try {
             fileSystem.file(name, 100);
@@ -152,10 +153,10 @@ public class FileSystemTest {
         }
     }
 
-    //does not pass the test
     @Test
     public void lsdir() {
         //directory exists
+        name = new String[2];
         name[0] = "root"; name[1] = "docs";
         assertTrue(fileSystem.lsdir(name) != null);
 

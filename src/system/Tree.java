@@ -1,7 +1,9 @@
+package system;
+
 import java.util.HashMap;
 
 /**
- * system.Tree data structure - nodes can have arbitrarily many children.
+ * system.system.Tree data structure - nodes can have arbitrarily many children.
  *
  * @author iain
  *
@@ -24,10 +26,10 @@ public class Tree extends Node {
     }
 
     /**
-     * Get a child from a \c system.Node, or create it if nonexistant.
+     * Get a child from a \c system.system.Node, or create it if nonexistant.
      *
      * @param name Name of child to search for.
-     * @return system.Tree found (or created).
+     * @return system.system.Tree found (or created).
      */
     public Tree GetChildByName(String name) {
 

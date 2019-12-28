@@ -1,3 +1,5 @@
+package system;
+
 public abstract class Node {
 
     /** Every node must have a name */
