@@ -64,6 +64,7 @@ public class FileSystemTest {
     public void disk() {
     }
 
+    //does not pass the tests
     @Test
     public void file() {
         //name doesn't start with root - an exception is expected
@@ -151,6 +152,7 @@ public class FileSystemTest {
         }
     }
 
+    //does not pass the test
     @Test
     public void lsdir() {
         //directory exists
