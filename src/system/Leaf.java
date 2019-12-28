@@ -1,16 +1,16 @@
 package system;
 
 /**
- * system.system.Leaf - cannot have children.
+ * system.Leaf - cannot have children.
  *
  * @author iain
  *
  */
 public class Leaf extends Node {
 
-    /** Size (in KB) of system.system.Leaf */
+    /** Size (in KB) of system.Leaf */
     public int size;
-    /** Array of blocks containing system.system.Leaf data */
+    /** Array of blocks containing system.Leaf data */
     public int[] allocations;
 
     /**
