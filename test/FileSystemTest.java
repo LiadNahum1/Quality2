@@ -62,6 +62,31 @@ public class FileSystemTest {
 
     @Test
     public void disk() {
+        int counter = 0;
+        boolean flag = true;
+        name[0] = "root"; name[1] = "tempDir"; name[2] = "tempFile";
+        try {
+            fileSystem.file(name, 10);
+            String[][] disk = fileSystem.disk();
+            for (int index = 0; index< disk.length; index++){
+                if (disk[index] != null){
+                    String[] fileName = disk[index];
+                    for (int jndex = 0; jndex < fileName.length; jndex++){
+                        if(!name[jndex].equals(fileName[jndex]))
+                            flag = false;
+                    }
+                    if(flag)
+                        counter++;
+                    flag = true;
+                }
+            }
+            assertTrue(counter == 10);
+        }
+        catch (OutOfSpaceException e) {
+            assertTrue(false);
+        } catch (BadFileNameException e) {
+            assertTrue(false);
+        }
     }
 
 
