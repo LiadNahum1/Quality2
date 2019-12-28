@@ -17,9 +17,10 @@ public class SpaceTest {
     @Before //before each test
     public void setUp() throws Exception {
         fileSystem = new FileSystem(100);
-        name = new String[1];
+        name = new String[3];
         name[0] = "root"; name[1] = "docs"; name[2] = "file1";
-        leaf = new Leaf("temp", 10);
+        fileSystem.file(name , 0);
+        this.leaf = fileSystem.FileExists(name);
     }
 
     @Test

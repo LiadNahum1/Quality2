@@ -15,7 +15,7 @@ public class TreeTest {
     @Before //before each test
     public void setUp() throws Exception {
         fileSystem = new FileSystem(100);
-        name = new String[1];
+        name = new String[3];
         name[0] = "root"; name[1] = "docs"; name[2] = "file1";
         fileSystem.file(name , 2);
     }
@@ -25,8 +25,8 @@ public class TreeTest {
         String[] directory = {"root"};
         Tree tree = fileSystem.DirExists(directory);
         Tree output = tree.GetChildByName("docs");
-        assertTrue(tree.children.containsKey("file1"));
-        assertFalse(tree.children.containsKey("notExistFile"));
+        assertTrue(output.children.containsKey("file1"));
+        assertFalse(output.children.containsKey("notExistFile"));
         output = tree.GetChildByName("directoryThatIsNotExist");
         assertTrue(output.children != null);
         assertTrue(output.children.isEmpty());
