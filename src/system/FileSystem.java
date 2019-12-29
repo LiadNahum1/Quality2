@@ -118,7 +118,8 @@ public class FileSystem {
 
                 throw new OutOfSpaceException();
 
-            } else if (k <= (FileSystem.fileStorage.countFreeSpace() - file.allocations.length)) { //if there will be enough space free after deleting the old file, do it
+                //fix their bug '-' to '+'
+            } else if (k <= (FileSystem.fileStorage.countFreeSpace() + file.allocations.length)) { //if there will be enough space free after deleting the old file, do it
 
                 rmfile(name);
 
@@ -262,12 +263,13 @@ public class FileSystem {
 
         Node found = PathExists(name);
 
-        if (found == null || found.getClass().getName() == "system.Node") {
+        // fix bug system.Node to system.Tree
+        if (found == null || found.getClass().getName() == "system.Tree") {
 
             return null;
 
         }
-
+        // fix bug system.Node to system.Tree
         return (Leaf) found;
 
     }

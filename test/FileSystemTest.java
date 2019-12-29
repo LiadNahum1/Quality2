@@ -59,26 +59,32 @@ public class FileSystemTest {
             assertTrue(false);
         }
 
-        /*
+        // test will work after fixing the bug
         //dir is already exist
         name[0] = "root"; name[1] = "docs";
         try {
             fileSystem.dir(name);
-            assertTrue(true);
             assertTrue(fileSystem.DirExists(name) != null);
         } catch (BadFileNameException e) {
             assertTrue(false);
-        }*/
+        }
+        // test will work after fixing the bug
     }
 
     @Test
     public void disk() {
         int counter = 0;
         boolean flag = true;
+        boolean isRightIndex = false;
+        name[0] = "root"; name[1] = "docs"; name[2] = "file1";
+        fileSystem.rmfile(name); //remove file so first cell in Space.blocks will be null
         name[0] = "root"; name[1] = "tempDir"; name[2] = "tempFile";
         try {
             fileSystem.file(name, 10);
+            Leaf fileAdded = fileSystem.FileExists(name);
+            int [] allocations = fileAdded.allocations; //indexes of allocations
             String[][] disk = fileSystem.disk();
+
             for (int index = 0; index< disk.length; index++){
                 if (disk[index] != null){
                     String[] fileName = disk[index];
@@ -86,12 +92,23 @@ public class FileSystemTest {
                         if(!name[jndex].equals(fileName[jndex]))
                             flag = false;
                     }
-                    if(flag)
+                    if(flag) { //in disk[index] file name is allocated
                         counter++;
+                        //check if this index is correct
+                        for(int allocationIndex = 0; allocationIndex < allocations.length ; allocationIndex++){
+                            if(index == allocations[allocationIndex])
+                                isRightIndex = true;
+                        }
+                        if(!isRightIndex)
+                            assertTrue(false);
+                    }
                     flag = true;
+                    isRightIndex = false;
                 }
             }
-            assertTrue(counter == 10);
+            assertTrue(counter == 10); //exactly 10 blocks are allocated
+
+
         }
         catch (OutOfSpaceException e) {
             assertTrue(false);
@@ -173,6 +190,29 @@ public class FileSystemTest {
         } catch (OutOfSpaceException e) {
             assertTrue(false);
         }
+
+        /*so far adding 6 kb. trying to add a file with a name of an existing file. There is no enough space
+        but if we will erase the old version will be enough. We will try to add 95 kb*/
+        name = new String [3];
+        name[0] = "root"; name[1] = "docs"; name[2] = "file1";
+        //test with bug
+        //fail();
+        //test with bug
+
+
+        // test will work after fixing the bug
+        try {
+            fileSystem.file(name, 95); //will be enough space if we will erase the older version
+            Leaf fileAdded = fileSystem.FileExists(name);
+            assertTrue( fileAdded != null & fileAdded.size == 95); //file still exists but its size is 95 kb
+
+        } catch (BadFileNameException e) {
+            assertTrue(false);
+        } catch (OutOfSpaceException e) {
+            assertTrue(false );
+        }
+        // test will work after fixing the bug
+
 
         /*Trying to add a file with a name of an existing file but the new file is too large
         and the system has not enough space - don't erase the old version*/
