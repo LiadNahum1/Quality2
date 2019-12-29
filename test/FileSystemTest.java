@@ -71,7 +71,7 @@ public class FileSystemTest {
             assertTrue(false);
         }
         catch(Exception e){
-
+            fail();
         }
 
     }
@@ -217,6 +217,7 @@ public class FileSystemTest {
         } catch (OutOfSpaceException e) {
             assertTrue(false );
         }catch(Exception e){
+            fail();
 
         }
 
@@ -238,6 +239,7 @@ public class FileSystemTest {
             assertTrue(fileSystem.FileExists(name) != null );
         }
         catch(Exception e){
+            fail();
 
         }
     }
