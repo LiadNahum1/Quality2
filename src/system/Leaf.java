@@ -24,9 +24,6 @@ public class Leaf extends Node {
 
         this.name = name;
 
-        //fix their bug
-        this.size = size;
-        //fix their bug
         allocateSpace(size);
 
     }

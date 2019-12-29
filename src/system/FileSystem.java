@@ -65,7 +65,6 @@ public class FileSystem {
      * @return A 2D String array of block/file allocations. Each index corresponds to one disk block and the entry is either null
      * if the blocks is free or an array of strings which is the path to the file occupying that block.
      */
-
     public String[][] disk() {
 
         Leaf[] alloc = FileSystem.fileStorage.getAlloc();
@@ -104,6 +103,7 @@ public class FileSystem {
 
         Tree workingTree = fileSystemTree;
         String fileName = name[name.length - 1];
+
         if (name[0] != "root") {
 
             throw new BadFileNameException();
@@ -118,19 +118,13 @@ public class FileSystem {
 
                 throw new OutOfSpaceException();
 
-                //fix their bug '-' to '+'
-            } else if (k <= (FileSystem.fileStorage.countFreeSpace() + file.allocations.length)) { //if there will be enough space free after deleting the old file, do it
+            } else if (k <= (FileSystem.fileStorage.countFreeSpace() - file.allocations.length)) { //if there will be enough space free after deleting the old file, do it
 
                 rmfile(name);
 
             }
-            //fix their bug
-            else
-                throw new OutOfSpaceException();
-            //fix their bug
 
         }
-
 
         //loop until level containing file
         for (int i = 0; i < name.length - 1; i++) {
@@ -263,13 +257,12 @@ public class FileSystem {
 
         Node found = PathExists(name);
 
-        // fix bug system.Node to system.Tree
-        if (found == null || found.getClass().getName() == "system.Tree") {
+        if (found == null || found.getClass().getName() == "system.Node") {
 
             return null;
 
         }
-        // fix bug system.Node to system.Tree
+
         return (Leaf) found;
 
     }
